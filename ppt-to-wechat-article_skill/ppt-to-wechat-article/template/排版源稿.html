@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=900">
+<title>深大AIGC协会讲座回顾 · 排版源稿</title>
+<style>
+@font-face{font-family:"GeistMonoLocal";src:url("assets/GeistMono-VariableFont_wght.ttf") format("truetype");font-weight:100 900;}
+:root{
+  --ink:#0D1326; --ink2:#263154; --navy:#0A0E1F; --blue:#5B7CFA; --blue2:#7C93F5;
+  --cyan:#67E8F9; --lav:#B9C2E4; --paper:#F6F7FC; --line:#DCE1F2; --muted:#5D6687;
+  --cn:"Noto Sans CJK SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"GeistMonoLocal","Geist Mono","Consolas",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#DDE2F0;font-family:var(--cn);color:var(--ink);-webkit-font-smoothing:antialiased}
+.page{width:900px;margin:0 auto;background:var(--paper);overflow:hidden}
+.seg{position:relative;width:900px;padding:96px 40px 96px;}
+p{margin:0}
+.body,.tpl li,.rule li,.bio li,.tli p,.topic p,.tagline{text-wrap:pretty}
+.body{font-size:34px;line-height:1.78;letter-spacing:.5px;color:#1C2440;margin:0 0 34px;text-align:justify}
+.body:last-child{margin-bottom:0}
+.body b{color:var(--ink);font-weight:700}
+.hl{background:linear-gradient(transparent 62%,rgba(103,232,249,.55) 62%);padding:0 2px}
+.note{font-size:26px;line-height:1.6;color:var(--muted)}
+.mono{font-family:var(--mono)}
+
+/* section header */
+.sh{margin:0 0 52px}
+.sh .row{display:flex;align-items:baseline;gap:20px}
+.sh .no{font-family:var(--mono);font-size:100px;line-height:1;font-weight:600;color:var(--blue);letter-spacing:-2px}
+.sh .en{font-family:var(--mono);font-size:24px;letter-spacing:6px;color:var(--blue2);text-transform:uppercase}
+.sh h2{margin:18px 0 0;font-size:54px;line-height:1.3;font-weight:800;color:var(--ink);letter-spacing:1px}
+.sh .uline{margin-top:26px;height:2px;background:repeating-linear-gradient(90deg,var(--blue) 0 10px,transparent 10px 18px);width:180px}
+.dark .sh h2{color:#fff}.dark .sh .no{color:var(--cyan)}.dark .sh .en{color:var(--lav)}
+.sub{font-size:40px;font-weight:800;margin:64px 0 26px;color:var(--ink);display:flex;align-items:center;gap:16px}
+.sub i{font-style:normal;font-family:var(--mono);font-size:26px;font-weight:600;color:#fff;background:var(--blue);border-radius:8px;padding:4px 12px;letter-spacing:1px}
+
+/* photo slots */
+.ph{position:relative;margin:0;border-radius:18px;overflow:hidden;background:#E8ECFA;border:2px dashed #9DABE6;cursor:pointer}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:none;user-select:none;-webkit-user-drag:none}
+.ph.filled{border:0;background:#000}
+.ph.filled img{display:block}
+.ph.filled .ph-empty{display:none}
+.ph-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#5A68A8;text-align:center;padding:20px}
+.ph-empty svg{width:64px;height:64px;opacity:.8}
+.ph-empty b{font-size:26px;font-weight:700;letter-spacing:4px;padding:4px 14px;border:1.5px solid currentColor;border-radius:8px}
+.ph-empty em{font-style:normal;font-size:30px;font-weight:700;line-height:1.4}
+.ph-empty span{font-size:24px;color:#7A86B8;font-family:var(--cn)}
+.ph-tools{position:absolute;right:12px;top:12px;display:none;gap:8px;z-index:3}
+.ph:hover .ph-tools{display:flex}
+.ph-tools button{font:600 18px var(--cn);border:0;border-radius:8px;padding:6px 12px;background:rgba(13,19,38,.82);color:#fff;cursor:pointer}
+.dark .ph{background:#1A2244;border-color:#5262A8}
+.dark .ph-empty{color:#B9C2E4}.dark .ph-empty span{color:#8E99C8}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mt{margin-top:48px}
+
+/* hero */
+.hero{height:1000px;padding:0;background:var(--navy);color:#fff;overflow:hidden}
+.hero .bg{position:absolute;left:0;right:0;bottom:0;height:640px;background:url("assets/wave.jpg") center bottom/cover no-repeat}
+.hero .fade{position:absolute;inset:0;background:linear-gradient(180deg,#0A0E1F 0%,#0A0E1F 36%,rgba(10,14,31,.55) 62%,rgba(10,14,31,.15) 100%)}
+.hero .blob{position:absolute;right:-50px;top:40px;width:440px;mix-blend-mode:screen;opacity:.95;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%)}
+.hero .ring{position:absolute;border:2px dashed rgba(124,147,245,.55);border-radius:50%}
+.hero .inner{position:absolute;left:64px;right:64px;top:300px}
+.kicker{font-family:var(--mono);font-size:26px;letter-spacing:8px;color:var(--cyan)}
+.hero h1{margin:36px 0 0;font-size:108px;line-height:1.12;font-weight:900;letter-spacing:2px}
+.hero h1 span{display:block}
+.hero .tagline{margin-top:44px;font-size:38px;font-weight:500;color:#DDE3FF;line-height:1.5}
+.hero .meta{margin-top:30px;display:inline-flex;gap:14px;align-items:center;font-family:var(--mono);font-size:26px;color:var(--lav);letter-spacing:3px;border:1.5px solid rgba(185,194,228,.5);border-radius:40px;padding:10px 24px}
+.hero .meta em{font-style:normal;width:8px;height:8px;border-radius:50%;background:var(--cyan)}
+.hero .bottom{position:absolute;left:64px;right:64px;bottom:56px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:24px;letter-spacing:4px;color:rgba(221,227,255,.85)}
+
+/* intro */
+.lead{padding-top:88px;padding-bottom:48px}
+.quote{font-family:var(--mono);font-size:120px;line-height:.6;color:var(--blue);height:60px}
+.lead .body:first-of-type{font-size:40px;line-height:1.6;font-weight:700;color:var(--ink)}
+
+/* agenda */
+.agenda{margin-top:56px;border-top:2px solid var(--ink)}
+.ag{display:grid;grid-template-columns:120px 1fr auto;align-items:center;padding:26px 6px;border-bottom:1.5px solid var(--line)}
+.ag .n{font-family:var(--mono);font-size:44px;font-weight:600;color:var(--blue)}
+.ag .t{font-size:36px;font-weight:700}
+.ag .e{font-family:var(--mono);font-size:24px;letter-spacing:3px;color:#8A93B8}
+.agenda-title{display:flex;justify-content:space-between;align-items:baseline;margin-top:80px}
+.agenda-title b{font-size:40px;font-weight:800}
+.agenda-title span{font-family:var(--mono);font-size:24px;letter-spacing:4px;color:var(--blue2)}
+
+/* data */
+.card{background:#fff;border-radius:22px;padding:44px 40px;border:1.5px solid var(--line)}
+.card h3{margin:0 0 8px;font-size:38px;font-weight:800}
+.card .cap{font-size:26px;color:var(--muted);margin-bottom:34px}
+.bar{display:grid;grid-template-columns:170px 1fr 70px;align-items:center;gap:18px;margin:18px 0}
+.bar .l{font-size:30px;font-weight:600;text-align:right}
+.bar .tr{height:34px;background:#EEF1FB;border-radius:17px;overflow:hidden}
+.bar .tr i{display:block;height:100%;border-radius:17px;background:linear-gradient(90deg,var(--blue),var(--blue2))}
+.bar .v{font-family:var(--mono);font-size:32px;font-weight:600;color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.chips span{font-size:26px;padding:8px 18px;border-radius:30px;background:#EEF1FB;color:#3A4470}
+.chips span em{font-style:normal;font-family:var(--mono);color:var(--blue);margin-left:6px;font-weight:600}
+.big{display:flex;align-items:baseline;gap:10px;margin:0 0 10px}
+.big b{font-family:var(--mono);font-size:120px;line-height:1;font-weight:700;color:var(--blue);letter-spacing:-3px}
+.big span{font-size:34px;font-weight:700}
+.cols{display:flex;align-items:flex-end;justify-content:space-between;height:400px;padding:0 4px;border-bottom:2px solid var(--ink)}
+.col{width:96px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.col .v{font-family:var(--mono);font-size:32px;font-weight:600;color:var(--blue);margin-bottom:10px}
+.col i{display:block;width:64px;border-radius:12px 12px 0 0;background:linear-gradient(180deg,var(--blue2),var(--blue))}
+.col.g i{background:linear-gradient(180deg,#A9F1FB,#46C9DE)}
+.col.g .v{color:#1FA6BC}
+.collab{display:flex;justify-content:space-between;padding:14px 4px 0}
+.collab span{width:96px;text-align:center;font-size:24px;line-height:1.35;color:#3A4470;font-weight:600}
+.depts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dept{background:var(--ink);color:#fff;border-radius:22px;padding:38px 20px 34px;text-align:center;position:relative;overflow:hidden}
+.dept:after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border:2px dashed rgba(103,232,249,.4);border-radius:50%}
+.dept b{display:inline-block;font-family:var(--mono);font-size:96px;line-height:1;font-weight:700;color:var(--cyan)}
+.dept small{font-size:28px;color:var(--lav);margin-left:6px}
+.dept span{display:block;margin-top:16px;font-size:32px;font-weight:700}
+
+/* timeline */
+.tl{position:relative;margin-top:20px;padding-left:120px}
+.tl:before{content:"";position:absolute;left:44px;top:40px;bottom:60px;border-left:2px dashed var(--blue2)}
+.tli{position:relative;padding:4px 0 48px}
+.tli:last-child{padding-bottom:0}
+.node{position:absolute;left:-120px;top:0;width:90px;height:90px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px #fff,0 0 0 12px rgba(91,124,250,.35)}
+.node img{width:52px;height:52px}
+.node .dot{width:22px;height:22px;border-radius:50%;background:#fff}
+.tli .pl{font-family:var(--mono);font-size:26px;letter-spacing:4px;color:var(--blue);font-weight:600}
+.tli h4{margin:8px 0 6px;font-size:38px;font-weight:800;line-height:1.4}
+.tli p{font-size:30px;line-height:1.6;color:var(--muted)}
+
+/* list / rules */
+.tpl{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:40px 40px 30px}
+.tpl .hd{font-family:var(--mono);font-size:24px;letter-spacing:4px;color:var(--blue);margin-bottom:18px}
+.tpl ul{list-style:none;margin:0;padding:0}
+.tpl li{font-size:32px;line-height:1.55;padding:14px 0 14px 46px;position:relative;border-bottom:1px dashed var(--line)}
+.tpl li:last-child{border-bottom:0}
+.tpl li:before{content:"";position:absolute;left:6px;top:30px;width:16px;height:16px;border-radius:5px;background:var(--blue);transform:rotate(45deg)}
+.tpl li small{color:var(--muted);font-size:28px}
+.rule{background:#fff;border-radius:22px;border:1.5px solid var(--line);overflow:hidden;margin-bottom:28px}
+.rule .top{background:var(--ink);color:#fff;padding:30px 36px;display:flex;justify-content:space-between;align-items:center}
+.rule .top b{font-size:38px;font-weight:800}
+.rule .top>span{font-size:24px;font-family:var(--cn);color:var(--ink);background:var(--cyan);border-radius:30px;padding:6px 16px;font-weight:700}
+.rule ol{margin:0;padding:30px 36px 30px 36px;list-style:none;counter-reset:s}
+.rule li{counter-increment:s;font-size:32px;line-height:1.6;padding:10px 0 10px 64px;position:relative}
+.rule li:before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:12px;font-family:var(--mono);font-size:28px;font-weight:700;color:var(--blue)}
+.rule .gr{font-family:var(--mono);font-size:22px;letter-spacing:4px;color:var(--lav);display:block;margin-bottom:6px}
+
+/* lecture dark */
+.dark{background:var(--navy);color:#E6EAFF}
+.dark .body{color:#D6DCF5}
+.dark .body b{color:#fff}
+.spk{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
+.spk .nm{font-size:64px;font-weight:900;color:#fff;line-height:1.2;margin-top:6px}
+.spk .ti{margin-top:16px;font-size:30px;line-height:1.55;color:var(--cyan);font-weight:700}
+.spk .ti2{margin-top:12px;font-size:26px;line-height:1.55;color:var(--lav)}
+.tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.tags span{font-size:26px;border:1.5px solid rgba(185,194,228,.45);border-radius:30px;padding:8px 18px;color:#E6EAFF}
+.bio{margin-top:52px;border-top:1.5px solid rgba(185,194,228,.25)}
+.bio li{font-size:31px;line-height:1.6;color:#D6DCF5;padding:20px 0 20px 40px;position:relative;border-bottom:1.5px solid rgba(185,194,228,.18);list-style:none}
+.bio{padding:0;margin-left:0}
+.bio li:before{content:"";position:absolute;left:4px;top:38px;width:14px;height:14px;border:2px solid var(--cyan);border-radius:50%}
+.topic{position:relative;margin-top:60px;border-radius:24px;overflow:hidden;padding:56px 48px;background:url("assets/marble.jpg") center/cover}
+.topic:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,31,.70),rgba(10,14,31,.88))}
+.topic>*{position:relative}
+.topic .k{font-family:var(--mono);font-size:24px;letter-spacing:6px;color:var(--cyan)}
+.topic h3{margin:18px 0 28px;font-size:60px;line-height:1.3;font-weight:900;color:#fff}
+.topic h3 span{font-family:var(--mono);color:var(--cyan)}
+.topic p{font-size:33px;line-height:1.8;color:#E6EAFF}
+
+/* ending */
+.end{background:var(--navy);color:#fff;padding-bottom:0}
+.end .wave{position:relative;height:480px;margin:70px -40px 0;overflow:hidden}
+.end .wave:after{content:"";position:absolute;inset:0;background:url("assets/wave.jpg") center 70%/cover;filter:brightness(1.7) saturate(1.25)}
+.end .wave:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0A0E1F 0%,rgba(10,14,31,0) 38%,rgba(10,14,31,0) 70%,rgba(10,14,31,.55) 100%)}
+.end .wave .sig{z-index:2}
+.end .wave .sig{position:absolute;left:64px;right:64px;bottom:60px;display:flex;justify-content:space-between;align-items:flex-end}
+.end .wave .sig b{font-size:48px;font-weight:900;line-height:1.3}
+.end .wave .sig span{font-family:var(--mono);font-size:24px;letter-spacing:4px;color:var(--lav)}
+.cta{margin-top:70px;padding:50px 44px;border-radius:24px;border:1.5px solid rgba(103,232,249,.45);background:rgba(91,124,250,.10)}
+.cta .k{font-family:var(--mono);font-size:24px;letter-spacing:6px;color:var(--cyan);margin-bottom:20px}
+.cta h3{margin:0 0 24px;font-size:48px;line-height:1.4;font-weight:900}
+.next{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.next span{font-size:28px;padding:10px 20px;border-radius:12px;background:rgba(255,255,255,.08);color:#E6EAFF}
+.next span b{font-family:var(--mono);color:var(--cyan);margin-right:8px;font-weight:600}
+
+/* toolbar (not exported) */
+#toolbar{position:fixed;left:16px;top:16px;z-index:99;background:#0D1326;color:#fff;border-radius:14px;padding:14px 16px;font:14px/1.6 var(--cn);width:230px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+#toolbar b{font-size:15px}
+#toolbar button{display:block;width:100%;margin-top:8px;font:600 14px var(--cn);border:0;border-radius:8px;padding:8px;background:#5B7CFA;color:#fff;cursor:pointer}
+#toolbar button.alt{background:#263154}
+#toolbar p{margin-top:8px;color:#B9C2E4;font-size:12.5px}
+body.editing [data-edit]{outline:1px dashed rgba(91,124,250,.6);outline-offset:3px}
+body.export #toolbar,body.export .ph-tools{display:none!important}
+body.export .ph{cursor:default}
+@media print{#toolbar,.ph-tools{display:none!important} body{background:#fff} .seg{break-inside:avoid}}
+/* ===== 讲座回顾 · 主题色与新增组件 ===== */
+:root{--blue:#4757C7;--blue2:#6261B4;--muted:#535E7B;--teal:#146E68;--coral:#AC4A34;--line:#D9DEF0}
+.hero .fade{background:radial-gradient(ellipse 64% 50% at 90% 14%,rgba(113,73,182,.32),transparent 90%),linear-gradient(180deg,#0A0E1F 0%,#0A0E1F 36%,rgba(10,14,31,.55) 62%,rgba(10,14,31,.15) 100%)}
+.hero h1 .mono{font-family:var(--mono);color:var(--cyan);font-weight:700;letter-spacing:0}
+.hero h1 .h1b{font-size:70px;margin-top:14px}
+.lead{background:#FAFBFF}
+.agenda-title span,.sh .en{color:#56659B}
+.ag .e{color:#596784}
+.ag .t{font-size:34px}
+/* 主题底色 */
+.t-blue{background:linear-gradient(180deg,#EDF5FF,#EAF2FD);box-shadow:inset 0 6px #C5D7F4}
+.t-blue .sh .no{color:#176F73}
+.t-blue .sh .uline{background:repeating-linear-gradient(90deg,#258B88 0 10px,transparent 10px 18px)}
+.t-blue .ph{background:#F8FCFF;border-color:#518DAD}.t-blue .ph-empty{color:#2C657D}.t-blue .ph-empty span{color:#456C80}
+.t-warm{background:#FFF5EB;box-shadow:inset 0 6px #F0C9B3}
+.t-warm .sh .no{color:#AC4A34}.t-warm .sh .en{color:#9E5846}
+.t-warm .sh .uline{background:repeating-linear-gradient(90deg,#C5684B 0 10px,transparent 10px 18px)}
+.t-warm .ph{background:#FFFAF4;border-color:#C87E61}.t-warm .ph-empty{color:#95523B}.t-warm .ph-empty span{color:#8A5B48}
+.t-warm .sub i{background:#AC4A34}
+.t-lav{background:linear-gradient(180deg,#EDE9F8,#F2EFFA);box-shadow:inset 0 6px #CDC6E8}
+.t-lav .sh .no{color:#6350A8}
+.t-lav .ph{background:#F9F7FF;border-color:#8F80B9}.t-lav .ph-empty{color:#605186}.t-lav .ph-empty span{color:#71638E}
+.t-lav .sub i{background:#6350A8}
+.t-white{background:#FFF;box-shadow:inset 0 6px #DAD7F0}
+.t-white .sh .no{color:#176C65}
+.t-white .sh .uline{background:repeating-linear-gradient(90deg,#25847A 0 10px,transparent 10px 18px)}
+.t-white .ph{background:#F6FCF8;border-color:#619D8C}.t-white .ph-empty{color:#276D5D}.t-white .ph-empty span{color:#457365}
+.t-white .sub i{background:#176C65}
+.talk{background:radial-gradient(ellipse 100% 42% at 100% 0%,#33294F,transparent),linear-gradient(180deg,#141C39,#13172D 70%,#1E1C3F);box-shadow:inset 0 6px #6E63A7}
+.talk .ph{background:#272D51;border-color:#9A8CCA}.talk .ph-empty{color:#D8D1F3}.talk .ph-empty span{color:#C2B7E4}
+.talk .sh .en{color:#C6BDE6}
+.t-mint{background:linear-gradient(180deg,#E7F4EE,#EEF8F3);color:#142E3B;box-shadow:inset 0 6px #ABD5C7}
+.t-mint2{background:linear-gradient(180deg,#EEF8F3,#F3FAF6);box-shadow:none;padding-bottom:0}
+.t-mint .body{color:#203D49}.t-mint .body b{color:#142E3B}
+.t-mint .sh h2{color:#142E3B}.t-mint .sh .no{color:#176C65}.t-mint .sh .en{color:#306E68}
+.t-mint .sh .uline{background:repeating-linear-gradient(90deg,#25847A 0 10px,transparent 10px 18px)}
+.t-mint .ph{background:#F6FCF8;border-color:#619D8C}.t-mint .ph-empty{color:#276D5D}.t-mint .ph-empty span{color:#457365}
+/* 讲座PPT配图 */
+.pptfig{margin:0;border-radius:18px;overflow:hidden;background:#fff;border:1.5px solid var(--line);box-shadow:0 10px 30px rgba(30,40,90,.06)}
+.pptfig img{display:block;width:100%;height:auto}
+.pptfig figcaption{display:flex;gap:12px;align-items:center;padding:14px 20px;font-size:24px;color:#4A5374;border-top:1.5px solid var(--line);background:#FBFBFE}
+.pptfig figcaption b{white-space:nowrap;flex:none;font-family:var(--mono);font-size:22px;letter-spacing:2px;color:#fff;background:#3E4A9E;border-radius:6px;padding:2px 10px;font-weight:600}
+.t-warm .pptfig figcaption b{white-space:nowrap;flex:none;background:#AC4A34}.t-lav .pptfig figcaption b{white-space:nowrap;flex:none;background:#6350A8}.t-white .pptfig figcaption b{white-space:nowrap;flex:none;background:#176C65}
+/* 年代时间线 */
+.yl{position:relative;margin:10px 0 0;padding-left:150px}
+.yl:before{content:"";position:absolute;left:118px;top:16px;bottom:16px;border-left:2px dashed #93A8D8}
+.yi{position:relative;margin-bottom:40px}
+.yi:last-child{margin-bottom:0}
+.yi .y{position:absolute;left:-150px;top:0;width:110px;text-align:right;font-family:var(--mono);font-size:34px;font-weight:700;color:#3E4A9E}
+.yi:before{content:"";position:absolute;left:-40px;top:16px;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid #258B88}
+.yi h4{margin:0 0 6px;font-size:36px;font-weight:800;line-height:1.4;color:var(--ink)}
+.yi p{font-size:31px;line-height:1.65;color:#2A3352;text-wrap:pretty}
+/* 问题卡 */
+.qs{display:grid;gap:18px}
+.q{position:relative;background:#fff;border:1.5px solid #D3CDE9;border-radius:20px;padding:30px 34px 30px 96px;font-size:32px;line-height:1.6;font-weight:700;color:#1C2440}
+.q:before{content:"Q";position:absolute;left:30px;top:26px;font-family:var(--mono);font-size:44px;font-weight:700;color:#6350A8}
+.answer{margin-top:36px;border-radius:24px;padding:46px 40px;background:linear-gradient(135deg,#2A2560,#3F3A8C);color:#fff;display:flex;align-items:center;gap:34px}
+.answer b{font-size:88px;font-weight:900;letter-spacing:6px;line-height:1}
+.answer span{font-family:var(--mono);font-size:30px;letter-spacing:6px;color:#A9F1E6}
+.answer p{font-size:30px;line-height:1.6;color:#E3E1F7;margin-top:10px}
+/* 对比 */
+.vs{display:grid;grid-template-columns:1fr 64px 1fr;align-items:stretch;gap:0}
+.vs .c{border-radius:22px;padding:34px 30px;text-align:center}
+.vs .c h4{margin:0 0 20px;font-size:34px;font-weight:800}
+.vs .c li{list-style:none;font-size:31px;line-height:1.5;padding:10px 0;border-top:1.5px dashed rgba(0,0,0,.12)}
+.vs .c ul{margin:0;padding:0}
+.vs .old{background:#fff;border:1.5px solid #E9D5C5;color:#3B3550}
+.vs .new{background:#2B2F63;color:#fff}
+.vs .new li{border-top-color:rgba(255,255,255,.2)}
+.vs .new h4{color:#A9F1E6}
+.vs .ar{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:44px;color:#AC4A34;font-weight:700}
+.data{background:#fff;border:1.5px solid #E9D5C5;border-radius:22px;padding:36px 34px}
+.data .k{font-family:var(--mono);font-size:24px;letter-spacing:4px;color:#9E5846;margin-bottom:14px}
+.data li{list-style:none;position:relative;padding:12px 0 12px 34px;font-size:31px;line-height:1.6;color:#2A2F45}
+.data li:before{content:"";position:absolute;left:4px;top:28px;width:14px;height:14px;border-radius:4px;background:#C5684B;transform:rotate(45deg)}
+.data ul{margin:0;padding:0}
+.data li b{color:#AC4A34;font-family:var(--mono);font-weight:700}
+/* 四步流程 */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.flow div{background:#fff;border:1.5px solid #E9D5C5;border-radius:18px;padding:24px 14px 22px;text-align:center}
+.flow i{display:block;font-style:normal;font-family:var(--mono);font-size:30px;font-weight:700;color:#AC4A34;margin-bottom:10px}
+.flow span{font-size:28px;font-weight:700;line-height:1.4;color:#2A2F45}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:6px}
+.chain span{font-size:28px;font-weight:700;background:#fff;border:1.5px solid #D3CDE9;border-radius:30px;padding:8px 20px;color:#3C3270}
+.chain em{font-style:normal;color:#8F80B9;font-size:26px}
+/* 金句面板 */
+.gold{position:relative;border-radius:24px;overflow:hidden;padding:56px 46px;background:url("assets/marble.jpg") center/cover;color:#fff}
+.gold:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,25,59,.84),rgba(15,21,43,.93))}
+.gold>*{position:relative}
+.gold .k{font-family:var(--mono);font-size:24px;letter-spacing:6px;color:var(--cyan)}
+.gold h3{margin:20px 0 0;font-size:50px;line-height:1.45;font-weight:900}
+.gold p{margin-top:22px;font-size:34px;line-height:1.6;color:#A9F1E6;font-weight:700}
+.era{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.era>div{border-radius:20px;padding:30px 28px;background:#fff;border:1.5px solid #D3CDE9}
+.era>div.n{background:#2F2A66;border-color:#2F2A66;color:#fff}
+.era h4{margin:0 0 10px;font-size:34px;font-weight:800}
+.era .f{font-family:var(--mono);font-size:26px;font-weight:700;color:#6350A8;margin-bottom:12px}
+.era .n .f{color:#A9F1E6}
+.era p{font-size:28px;line-height:1.6;color:#454B68}
+.era .n p{color:#E3E1F7}
+.steps3 .s{display:flex;gap:22px;align-items:flex-start;padding:22px 0;border-bottom:1.5px dashed #D3CDE9}
+.steps3 .s:last-child{border-bottom:0}
+.steps3 i{font-style:normal;font-family:var(--mono);font-size:40px;font-weight:700;color:#6350A8;min-width:62px}
+.steps3 span{font-size:33px;font-weight:700;line-height:1.5;color:#1C2440}
+.tools{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:16px}
+.tools div{background:#F2FAF6;border:1.5px solid #BDDCD4;border-radius:18px;padding:26px 20px}
+.tools b{display:block;font-size:34px;font-weight:800;color:#14403D}
+.tools small{display:block;margin-top:8px;font-size:24px;color:#3F6660;font-family:var(--mono);word-break:break-all}
+.ways{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ways span{text-align:center;font-size:29px;font-weight:700;padding:20px 6px;border-radius:16px;background:#176C65;color:#fff}
+.cloud{display:flex;flex-wrap:wrap;gap:12px}
+.cloud span{font-size:28px;font-family:var(--mono);font-weight:600;padding:10px 20px;border-radius:30px;background:#E2F1EC;color:#1E4B46}
+.pull{border-left:8px solid #258B88;padding:8px 0 8px 30px;margin:0}
+.pull b{display:block;font-size:44px;line-height:1.45;font-weight:900;color:#142E3B}
+.pull span{display:block;margin-top:12px;font-size:26px;color:#3F6660}
+.bridge{font-size:30px;line-height:1.7;color:#4A4F6A;text-align:center;padding:4px 0}
+.ppt-note{font-size:24px;color:#5A6385;margin-top:14px;line-height:1.6}
+.t-mint .end-wave{position:relative;height:420px;margin:70px -40px 0;overflow:hidden;background:linear-gradient(160deg,#E8F6EF 10%,#C6E9DD 72%,#DBEAF4);border-radius:160px 0 0 0;border-top:2px solid #BEDCCC}
+.t-mint .end-wave:after{content:"";position:absolute;inset:0;background:url("assets/wave.jpg") center 70%/cover;opacity:.065;mix-blend-mode:multiply;filter:grayscale(1)}
+.t-mint .end-wave .sig{position:absolute;z-index:2;left:64px;right:64px;bottom:60px;display:flex;justify-content:space-between;align-items:flex-end;color:#183E43}
+.t-mint .end-wave .sig b{font-size:48px;font-weight:900;line-height:1.3}
+.t-mint .end-wave .sig span{font-family:var(--mono);font-size:24px;letter-spacing:4px;color:#3C6964}
+.ph.filled{border:0;background:#000}
+.pptfig.mt{margin-top:44px}
+.join .joincard{position:relative;background:#fff;border:2px solid #ABD5C7;border-radius:32px;padding:64px 50px 56px;text-align:center;box-shadow:0 18px 44px rgba(20,90,80,.08);overflow:hidden}
+.join .joincard:before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(90deg,#176C65,#4757C7 60%,#6350A8)}
+.join .jk{font-family:var(--mono);font-size:24px;letter-spacing:6px;color:#176C65;font-weight:600}
+.join h2{margin:18px 0 0;font-size:56px;font-weight:900;line-height:1.3;color:#142E3B}
+.join .jt{margin:26px auto 0;max-width:680px;font-size:33px;line-height:1.7;color:#203D49;text-wrap:pretty}
+.join .ph.qr{width:320px;height:320px;margin:44px auto 0;border-radius:20px;border-width:2.5px;background:#F6FCF8}
+.join .ph.qr .ph-empty{gap:10px;padding:14px}
+.join .ph.qr .ph-empty svg{width:56px;height:56px}
+.join .ph.qr .ph-empty b{font-size:24px;letter-spacing:2px}
+.join .ph.qr .ph-empty em{font-size:32px}
+.join .ph.qr.filled{background:#fff;border:2.5px solid #ABD5C7}
+.join .ph.qr img{object-fit:contain}
+.join .jh{margin-top:26px;font-size:28px;font-weight:700;color:#176C65;letter-spacing:2px}
+.join .end-wave{margin-top:80px}
+.pair .pptfig figcaption{font-size:24px;padding:12px 14px}
+
+/* ===== 删除照片位 ===== */
+.ph[data-removed]{display:none!important}
+.pair.single{grid-template-columns:1fr}
+.pair.single>.ph{height:460px!important}
+.pair.empty{display:none!important}
+.spk.nophoto{grid-template-columns:1fr}
+.joincard.noqr .jh{display:none}
+.ph-tools .del{background:rgba(172,52,52,.92)}
+.ph-tools button[data-a=del]{display:none}
+body.editing .ph-tools{display:flex}
+body.editing .ph-tools button[data-a=del]{display:inline-block}
+body.editing .ph{outline:3px solid rgba(91,124,250,.35);outline-offset:3px}
+#delBox{margin-top:10px;padding-top:8px;border-top:1px solid #2A355C}
+#delList{margin-top:4px;font-size:12.5px;color:#8E99C8}
+#delList button.restore{background:#1F7A6E;font-size:12.5px;padding:6px;text-align:left}
+body.export .ph{outline:0!important}
+
+/* ===== 讲座回顾头图（新封面） ===== */
+.hero2 .hx-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 85% 40%,rgba(124,120,230,.45),transparent 70%),radial-gradient(ellipse 80% 60% at 10% 100%,rgba(62,110,200,.55),transparent 70%),linear-gradient(165deg,#070D24 0%,#0D1A45 45%,#1A3474 80%,#2C4C95 100%)}
+.hero2 .hx-net{position:absolute;inset:0;background:url("assets/cover-particles.svg") center/cover;opacity:.8}
+.hero2 .hx-glow{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,13,36,.0) 0%,rgba(7,13,36,.0) 70%,rgba(10,14,31,.75) 100%)}
+.hero2 .hx-prism{position:absolute;right:-80px;top:470px;width:410px;opacity:.95;filter:drop-shadow(0 0 40px rgba(90,170,255,.35))}
+.hero2 .hx-in{position:absolute;left:64px;right:64px;top:130px}
+.hero2 .hx-k{font-family:var(--mono);font-size:26px;letter-spacing:6px;color:var(--cyan)}
+.hero2 .hx-t{margin:30px 0 0;font-family:var(--mono);font-size:132px;line-height:1.05;font-weight:700;letter-spacing:0;white-space:nowrap}
+.hero2 .hx-t span{display:inline}
+.hero2 .hx-t .ai{color:#fff}
+.hero2 .hx-t .qm i{font-style:normal;display:inline-block}
+.hero2 .hx-t .qm i:nth-child(1){color:#67E8F9}
+.hero2 .hx-t .qm i:nth-child(2){color:#A5B4FC;transform:translateY(-10px) rotate(-8deg)}
+.hero2 .hx-t .qm i:nth-child(3){color:transparent;-webkit-text-stroke:3px #E0E7FF;transform:translateY(6px) rotate(6deg)}
+.hero2 .hx-t .qm i:nth-child(4){color:#C4B5FD;opacity:.75;transform:translateY(-4px) rotate(-4deg)}
+.hero2 .hx-sub{margin-top:26px;font-size:66px;font-weight:900;letter-spacing:2px;line-height:1.25}
+.hero2 .hx-prompt{position:relative;z-index:2;margin-top:56px;width:560px;display:flex;align-items:center;gap:16px;padding:16px 16px 16px 22px;border-radius:20px;background:rgba(13,26,69,.62);border:1.5px solid rgba(165,180,252,.55);box-shadow:0 12px 40px rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.04)}
+.hero2 .hx-prompt .pk{font-family:var(--mono);font-size:20px;letter-spacing:3px;color:#7FE7F5;border:1.5px solid rgba(127,231,245,.6);border-radius:6px;padding:2px 8px}
+.hero2 .hx-prompt .pt{flex:1;font-family:var(--mono);font-size:32px;color:#fff;display:flex;align-items:center;gap:8px}
+.hero2 .hx-prompt .pt u{display:inline-block;width:120px;border-bottom:3px dashed rgba(224,231,255,.6);height:28px}
+.hero2 .hx-prompt .caret{display:inline-block;width:3px;height:34px;background:#67E8F9}
+.hero2 .hx-prompt .go{font-size:24px;font-weight:700;color:#0A1233;background:linear-gradient(90deg,#67E8F9,#A5B4FC);border-radius:12px;padding:10px 18px}
+.hero2 .hx-fork{display:block;width:560px;height:170px;margin-top:0}
+.hero2 .hx-fl{margin-top:16px;font-family:var(--mono);font-size:22px;letter-spacing:4px;color:rgba(221,227,255,.8)}
+.hero2 .hx-foot{position:absolute;left:64px;right:64px;bottom:54px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1.5px solid rgba(165,180,252,.35);padding-top:24px}
+.hero2 .hx-foot small{display:block;font-family:var(--mono);font-size:22px;letter-spacing:4px;color:#A5B4FC}
+.hero2 .hx-foot b{display:block;margin-top:6px;font-size:36px;font-weight:800;color:#fff}
+.hero2 .hx-foot .r{text-align:right}
+</style>
+</head>
+<body>
+<div id="toolbar">
+  <b>排版源稿 · 编辑工具</b>
+  <p>① 点击任一「实拍照片」框选择本地图片；填入后拖动可调整取景，Ctrl+滚轮缩放，双击复位，悬停可「更换 / 清除」。</p>
+  <p>★ 删除照片框：点「开启编辑」后，每个照片框/二维码框右上角出现「删除此框」，删除后排版自动收拢；误删可在下方「已删除照片位」里恢复，或点「撤销删除」。</p>
+  <div id="delBox"><b style="font-size:13px">已删除照片位</b><div id="delList"><i>（无）</i></div>
+  <button class="alt" id="btnUndo">撤销删除</button><button class="alt" id="btnRestoreAll">全部恢复</button></div>
+  <p>② 「开启编辑」后可直接改正文、标题、列表文字（照片框提示不参与编辑）。</p>
+  <p>③ 「保存编辑后的HTML」会把已选照片（自动压缩到长边≤2400px）、取景位置和改过的文字一起存成新文件，放回本文件夹即可再次打开或导出。</p>
+  <button id="btnEdit">开启编辑（文字 / 照片框）</button>
+  <button class="alt" id="btnSave">保存编辑后的HTML</button>
+  <button class="alt" id="btnPrint">打印 / 存为PDF</button>
+  <p>导出PNG：<code>python3 render.py</code> 或 <code>python3 render.py 已保存的文件.html</code>（详见 README）。</p>
+</div>
+
+<div class="page" id="page">
+
+<!-- ========== 头图 ========== -->
+<section class="seg hero hero2" data-seg="01">
+  <div class="hx-bg"></div><div class="hx-net"></div><div class="hx-glow"></div>
+  <img class="hx-prism" src="assets/ppt-cover-prism.png" alt="">
+  <div class="hx-in">
+    <div class="hx-k">LECTURE RECAP · 讲座回顾</div>
+    <h1 class="hx-t" data-edit><span class="ai">AI ×</span> <span class="qm"><i>?</i><i>?</i><i>?</i><i>?</i></span></h1>
+    <div class="hx-sub" data-edit>一场完全未知的想象</div>
+    <div class="hx-prompt"><span class="pk">PROMPT</span><span class="pt">AI × <u></u><b class="caret"></b></span><span class="go">生成 ✦</span></div>
+    <svg class="hx-fork" viewBox="0 0 560 170" aria-hidden="true">
+      <g fill="none" stroke="#7FE7F5" stroke-width="2" stroke-dasharray="6 7" stroke-opacity=".75">
+        <path d="M470 0 C470 70 60 60 60 140"/><path d="M470 0 C470 80 200 70 200 140"/><path d="M470 0 C470 80 340 80 340 140"/><path d="M470 0 C470 90 480 90 480 140"/>
+      </g>
+      <g font-family="GeistMonoLocal,monospace" font-size="26" font-weight="700" text-anchor="middle">
+        <circle cx="60" cy="146" r="22" fill="#0E1C45" stroke="#7FE7F5" stroke-width="2"/><text x="60" y="155" fill="#7FE7F5">?</text>
+        <circle cx="200" cy="146" r="22" fill="#0E1C45" stroke="#B9A8FF" stroke-width="2"/><text x="200" y="155" fill="#B9A8FF">?</text>
+        <circle cx="340" cy="146" r="22" fill="#0E1C45" stroke="#FFFFFF" stroke-width="2"/><text x="340" y="155" fill="#FFFFFF">?</text>
+        <circle cx="480" cy="146" r="22" fill="#0E1C45" stroke="#7FE7F5" stroke-width="2"/><text x="480" y="155" fill="#7FE7F5">?</text>
+      </g>
+    </svg>
+    <div class="hx-fl">无限种可能 · ENDLESS POSSIBILITIES</div>
+  </div>
+  <div class="hx-foot"><div><small>主讲</small><b data-edit>张腾宇老师</b></div><div class="r"><small>主办</small><b data-edit>深大AIGC协会</b></div></div>
+</section>
+
+<section class="seg lead" data-seg="01b">
+  <div class="quote">“</div>
+  <p class="body" data-edit>AI到底跑得有多快？当每个人都拿到同样的工具，真正拉开差距的又是什么？</p>
+  <p class="body" data-edit>深大AIGC协会的这场讲座，请来三二数字AIGC技术总监张腾宇老师，带来主题分享「AI × ????：一场完全未知的想象」。从AI工具的进化史，到2026年正在发生的变化，再到AI时代的创作方法，老师用大量案例，把这些问题摊开来讲。</p>
+  <p class="body" data-edit>没来得及到场的同学也不用遗憾，下面这份回顾，帮你把重点重新理一遍。</p>
+  <div class="agenda-title"><b>讲座脉络</b><span>OUTLINE</span></div>
+  <div class="agenda">
+    <div class="ag"><span class="n">01</span><span class="t">AI进化有多快</span><span class="e">BEFORE 2026</span></div>
+    <div class="ag"><span class="n">02</span><span class="t">After 2026：行业正在变</span><span class="e">AFTER 2026</span></div>
+    <div class="ag"><span class="n">03</span><span class="t">AI时代，创意才是核心</span><span class="e">CREATIVITY</span></div>
+    <div class="ag"><span class="n">04</span><span class="t">常用生图工具</span><span class="e">TOOLS</span></div>
+  </div>
+</section>
+
+<!-- ========== 主讲人 ========== -->
+<section class="seg dark talk" data-seg="02">
+  <div class="sh"><div class="row"><span class="no">00</span><span class="en">Speaker</span></div><h2>认识主讲人</h2><div class="uline" style="background:repeating-linear-gradient(90deg,#67E8F9 0 10px,transparent 10px 18px)"></div></div>
+  <div class="spk">
+    <figure class="ph" data-slot="p1" style="height:450px"></figure>
+    <div>
+      <div class="mono" style="font-size:24px;letter-spacing:5px;color:#C6BDE6">SPEAKER · 主讲人</div>
+      <div class="nm">张腾宇老师</div>
+      <div class="ti">三二数字AIGC技术总监</div>
+      <div class="tags"><span>香港理工大学特邀讲师</span><span>微软人工智能教育工作者</span><span>深圳大学特邀技术导师</span><span>影视特效制作人</span></div>
+    </div>
+  </div>
+  <ul class="bio">
+    <li>荣获多项国内外影视行业大奖</li>
+    <li>广东财经大学、深圳大学、深圳技术大学、暨南大学首届AIGC训练营讲师</li>
+    <li>曾从事影视特效行业，在电影特效制作中融合AIGC技术研究，参与制作多部AIGC作品</li>
+    <li>服务企业包括华为、腾讯、深开鸿、道通、DQ机器人等</li>
+    <li>深圳市人工智能生态大会宣导片创作者，深圳文博会182创意园AI数字画廊策划总监</li>
+  </ul>
+</section>
+
+<!-- ========== 01 AI进化有多快 ========== -->
+<section class="seg t-blue" data-seg="03">
+  <div class="sub" style="margin-top:0"><i>START</i>互动开场：AI小游戏</div>
+  <p class="body" data-edit>讲座从一段“AI小游戏”（AI Quiz game）互动时间开始，先让大家动动脑，再进入正题。</p>
+  <figure class="ph" data-slot="p2" style="height:460px"></figure>
+
+  <div class="sh" style="margin-top:100px"><div class="row"><span class="no">01</span><span class="en">Before 2026</span></div><h2>AI进化有多快</h2><div class="uline"></div></div>
+  <p class="body" data-edit>2022年，红杉资本曾对AIGC的发展节奏做过一张预测表。老师在PPT里给出的判断是：<b>AI发展的速度比预测快很多——未来已经以超光速到来。</b></p>
+  <figure class="pptfig"><img src="assets/ppt-P04.jpg" alt=""><figcaption><b>讲座PPT</b>红杉资本2022年对AIGC发展的预测（P4）</figcaption></figure>
+</section>
+
+<section class="seg t-blue" data-seg="04" style="padding-top:56px">
+  <div class="sub" style="margin-top:0"><i>TIMELINE</i>从涂鸦到“周更”</div>
+  <div class="yl">
+    <div class="yi"><span class="y">2019</span><h4>AI工具早已出现</h4><p>早在2019年就有了能把涂鸦变成风景图的GauGAN，以及Artbreeder等工具。短短几年，AI工具的能力突飞猛进。</p></div>
+    <div class="yi"><span class="y">2022</span><h4>《太空歌剧院》夺冠</h4><p>美国游戏设计师杰森·艾伦（Jason Allen）用Midjourney生成并润色的作品，获得2022年8月美国科罗拉多州艺术博览会数字艺术类别冠军。</p></div>
+    <div class="yi"><span class="y">2022</span><h4>艺术家的抵制</h4><p>AIGC早期，面向职业艺术家的网站ArtStation上，艺术家们集体抵制AI创作。</p></div>
+    <div class="yi"><span class="y">NOW</span><h4>迭代以“周”和“天”计</h4><p>开源模型数量呈J型曲线爆发，AI工具的迭代周期缩短到周级、甚至天级。PPT还用2023年3月23日与2026年7月22日两个时间点的AI视频画面作对比，变化一目了然。</p></div>
+  </div>
+  <div class="pair mt">
+    <figure class="pptfig"><img src="assets/ppt-P10.jpg" alt=""><figcaption><b>讲座PPT</b>《太空歌剧院》（P10）</figcaption></figure>
+    <figure class="pptfig"><img src="assets/ppt-P13.jpg" alt=""><figcaption><b>讲座PPT</b>开源模型爆发（P13）</figcaption></figure>
+  </div>
+  <div class="pair mt">
+    <figure class="ph" data-slot="p3" style="height:320px"></figure>
+    <figure class="ph" data-slot="p4" style="height:320px"></figure>
+  </div>
+</section>
+
+<!-- ========== 02 After 2026 ========== -->
+<section class="seg t-warm" data-seg="05">
+  <div class="sh"><div class="row"><span class="no">02</span><span class="en">After 2026</span></div><h2>After 2026：行业正在变</h2><div class="uline"></div></div>
+  <p class="body" data-edit>PPT展示了扣子（Coze）企业版分阶段停止新售、全面下线的公告，以及网络上从业者的相关讨论。其中一种观点认为：工作流并不是被AI淘汰的，而是被“模型自己会规划”取代了。</p>
+  <p class="body" data-edit>与此同时，视频模型也在快速迭代，<b>参考生视频、对话式交互编辑</b>逐渐成为主流。</p>
+  <figure class="pptfig"><img src="assets/ppt-P17.jpg" alt=""><figcaption><b>讲座PPT</b>2026年的视频模型（P17）</figcaption></figure>
+  <div class="sub"><i>FLOW</i>创作AIGC短片的新流程</div>
+  <div class="flow">
+    <div><i>01</i><span>AIGC短片<br>创意剧本</span></div>
+    <div><i>02</i><span>创作<br>AIGC资产</span></div>
+    <div><i>03</i><span>AI<br>生成视频</span></div>
+    <div><i>04</i><span>剪辑<br>及优化</span></div>
+  </div>
+  <p class="body" data-edit style="margin-top:36px">老师还展示了在LibTV中完成角色提取与修复、场景风格帧、人物及场景测试的创作过程。</p>
+</section>
+
+<section class="seg t-warm" data-seg="06" style="padding-top:56px">
+  <div class="sub" style="margin-top:0"><i>EFFICIENCY</i>效率大幅提升</div>
+  <div class="vs">
+    <div class="c old"><h4>传统制作</h4><ul><li>10人+<br>摄像/演员/特效等</li><li>3个月+</li><li>百万+级别</li></ul></div>
+    <div class="ar">→</div>
+    <div class="c new"><h4>AI 时代</h4><ul><li>2人</li><li>2电脑</li><li>3天</li></ul></div>
+  </div>
+  <p class="body" data-edit style="margin-top:44px">但硬币的另一面是：<b>效率的提升，也让AI生成的内容同质化严重。</b>PPT中列出了这样一组数据：</p>
+  <div class="data">
+    <div class="k">讲座PPT中的数据</div>
+    <ul>
+      <li>横店影视城短剧开机量同比下降<b>75%</b></li>
+      <li>同期抖音端平均每<b>36</b>秒就有一部新的AI短剧上线</li>
+      <li>主流短剧平台日均消耗约<b>1.7亿</b>，其中AI剧约<b>1亿</b>，真人剧约<b>7000万</b></li>
+    </ul>
+  </div>
+  <p class="body" data-edit style="margin-top:44px">正如PPT所说：AI不仅带来效率的提升，<b>还带来内容生产的新方式。</b></p>
+  <figure class="ph mt" data-slot="p5" style="height:460px"></figure>
+</section>
+
+<!-- ========== 03 创意 ========== -->
+<section class="seg t-lav" data-seg="07">
+  <div class="sh"><div class="row"><span class="no">03</span><span class="en">Creativity</span></div><h2>AI时代，创意才是核心</h2><div class="uline" style="background:repeating-linear-gradient(90deg,#6350A8 0 10px,transparent 10px 18px)"></div></div>
+  <p class="body" data-edit>讲座中段，老师抛出了几个问题：</p>
+  <div class="qs">
+    <div class="q">AI正在改变什么？</div>
+    <div class="q">当每个人都拥有这些工具，为什么有的人只是工作变快了，有的人却能做出以前想不到的事情？</div>
+    <div class="q">大家觉得AI时代最重要的是什么？</div>
+  </div>
+  <div class="answer"><b>创意</b><div><span>CREATIVITY</span><p>PPT给出的答案</p></div></div>
+  <div class="sub"><i>BEFORE</i>那么，在AI兴起以前呢？</div>
+  <p class="body" data-edit>传统设计需要参考大量案例，再经过画图、建模、渲染，从草稿设计到三维建模、实物渲染，实现一个想法的过程可能非常漫长。</p>
+  <p class="body" data-edit>而在AI时代，有一个好想法，<b>立刻就能看到成品，而且是很多种不同的可能</b>；哪怕只是一张草稿，也能快速实现不同效果。</p>
+  <figure class="pptfig"><img src="assets/ppt-P36.jpg" alt=""><figcaption><b>讲座PPT</b>Trees / Chairs 生成示例（P36）</figcaption></figure>
+</section>
+
+<section class="seg t-lav" data-seg="08" style="padding-top:56px">
+  <p class="bridge" data-edit>创作方式随之改变——</p>
+  <p style="text-align:center;font-size:52px;font-weight:900;color:#2F2A66;margin:6px 0 46px">从“画出来”到“筛选出来”</p>
+  <div class="era">
+    <div><h4>工具时代</h4><div class="f">设计师 → 工具 → 作品</div><p>画笔、相机、Photoshop只负责执行命令</p></div>
+    <div class="n"><h4>共创时代</h4><div class="f">设计师 ↔ AI ↔ 作品</div><p>AI开始提供方向、生成可能、扩展空间</p></div>
+  </div>
+  <div class="sub"><i>DIRECTOR</i>设计师更像创意导演</div>
+  <div class="steps3">
+    <div class="s"><i>01</i><span>定义创意方向</span></div>
+    <div class="s"><i>02</i><span>调用不同工具，引导AI生成</span></div>
+    <div class="s"><i>03</i><span>判断并编辑结果</span></div>
+  </div>
+  <div class="gold mt">
+    <div class="k">讲座金句 · KEY IDEA</div>
+    <h3>AI生成的是可能性，<br>设计师决定的是意义。</h3>
+    <p>设计/创作不再是从0-1，<br>而是从0-100-1。</p>
+  </div>
+</section>
+
+<section class="seg t-lav" data-seg="09" style="padding-top:56px">
+  <div class="sub" style="margin-top:0"><i>CASE</i>与AI交互的完整创作</div>
+  <p class="body" data-edit>老师用一个案例展示：从灵感到成片，整个创作流程都是与AI交互的过程，最终筛选出主要角色。</p>
+  <div class="chain"><span>灵感</span><em>→</em><span>脚本</span><em>→</em><span>角色</span><em>→</em><span>场景</span><em>→</em><span>视频</span></div>
+  <figure class="pptfig mt"><img src="assets/ppt-P42.jpg" alt=""><figcaption><b>讲座PPT</b>最终筛选出的主要角色（P42）</figcaption></figure>
+  <div class="pair mt">
+    <figure class="ph" data-slot="p6" style="height:320px"></figure>
+    <figure class="ph" data-slot="p7" style="height:320px"></figure>
+  </div>
+</section>
+
+<!-- ========== 04 工具 ========== -->
+<section class="seg t-white" data-seg="10">
+  <div class="sh"><div class="row"><span class="no">04</span><span class="en">Tools</span></div><h2>常用生图工具</h2><div class="uline"></div></div>
+  <p class="body" data-edit>“有哪些常用的免费在线生图平台？”讲座最后，老师给大家分享了一份实用清单。</p>
+  <div class="sub" style="margin-top:40px"><i>FREE</i>免费在线生图平台</div>
+  <div class="tools">
+    <div><b>即梦AI</b><small>图片 · 视频</small></div>
+    <div><b>豆包</b><small>对话式生图</small></div>
+    <div><b>腾讯混元</b><small>aistudio.tencent.com</small></div>
+  </div>
+  <div class="sub"><i>WAYS</i>四种生图方式</div>
+  <div class="ways"><span>网页生图</span><span>对话生图</span><span>画板生图</span><span>工作流生图</span></div>
+  <div class="sub"><i>TOOLKIT</i>常用的生图工具</div>
+  <div class="cloud"><span>FLUX2</span><span>LibTV</span><span>Nano Banana Pro</span><span>即梦AI</span><span>Midjourney</span><span>ComfyUI</span><span>Ideogram</span><span>KLING</span><span>KREA AI</span><span>KRITA</span></div>
+  <figure class="pptfig mt"><img src="assets/ppt-P50.jpg" alt=""><figcaption><b>讲座PPT</b>常用的生图工具（P50）</figcaption></figure>
+  <figure class="ph mt" data-slot="p8" style="height:460px"></figure>
+</section>
+
+<!-- ========== 结尾 ========== -->
+<section class="seg t-mint" data-seg="11">
+  <div class="sub" style="margin-top:0"><i style="background:#176C65">Q&amp;A</i>互动时间</div>
+  <p class="body" data-edit>讲座尾声是互动时间。PPT上留下了一句话：</p>
+  <blockquote class="pull"><b>创造力，才是人类真正的优势。</b><span>—— 讲座PPT（By 32digital）</span></blockquote>
+  <figure class="ph mt" data-slot="p9" style="height:420px"></figure>
+</section>
+
+<section class="seg t-mint t-mint2" data-seg="11b" style="padding-top:40px;padding-bottom:60px">
+  <div class="sh"><div class="row"><span class="no">END</span><span class="en">Thanks</span></div><h2>写在最后</h2><div class="uline"></div></div>
+  <p class="body" data-edit>从2019年的涂鸦生成风景，到如今以“周”甚至“天”为单位更新的模型，AI工具的门槛正在被迅速拉平。工具人人都有，真正的差别，在于有没有自己的创意：定义方向、判断结果，并赋予作品意义。</p>
+  <p class="body" data-edit>感谢张腾宇老师带来的精彩分享，也感谢每一位来到讲座现场的同学。</p>
+  <p class="body" data-edit>关注<b>深大AIGC协会</b>，后续活动的消息，我们会第一时间在这里发布。</p>
+  <figure class="ph mt" data-slot="p10" style="height:500px"></figure>
+</section>
+
+<!-- ========== 招新 · 进群 ========== -->
+<section class="seg t-mint t-mint2 join" data-seg="12" style="padding-top:30px">
+  <div class="joincard">
+    <div class="jk">JOIN US · 招新</div>
+    <h2 data-edit>加入深大AIGC协会</h2>
+    <p class="jt" data-edit>对AI、AIGC创作感兴趣的同学，<br>欢迎加入协会交流群，一起学习、交流。</p>
+    <figure class="ph qr" data-slot="qrcode"></figure>
+    <p class="jh" data-edit>长按识别二维码 · 加入交流群</p>
+  </div>
+  <div class="end-wave"><div class="sig"><b>深大AIGC协会<br>下次活动见</b><span>LECTURE RECAP</span></div></div>
+</section>
+
+</div>
+
+<script>
+const SLOTS={
+  p1:{t:"张腾宇老师",s:"竖图 · 约 3:4"},
+  p2:{t:"互动开场 · AI小游戏",s:"横图 · 约 16:9"},
+  p3:{t:"讲座现场 1",s:"横图 · 约 5:4"},
+  p4:{t:"讲座现场 2",s:"横图 · 约 5:4"},
+  p5:{t:"讲座现场 3",s:"横图 · 约 16:9"},
+  p6:{t:"讲座现场 4",s:"横图 · 约 5:4"},
+  p7:{t:"讲座现场 5",s:"横图 · 约 5:4"},
+  p8:{t:"讲座现场 6",s:"横图 · 约 16:9"},
+  p9:{t:"互动交流",s:"横图 · 约 2:1"},
+  p10:{t:"集体合影",s:"横图 · 建议 16:10"},
+  qrcode:{t:"群二维码",s:"长按识别 / 扫码加入",b:"二维码占位",icon:"qr"}
+};
+const CAM='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.3l1.4-2h7.6l1.4 2h2.3A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.6"/></svg>';
+const QR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>';
+const isExport=new URLSearchParams(location.search).has('export');
+if(isExport)document.body.classList.add('export');
+function shrink(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{
+  const M=2400,k=Math.min(1,M/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
+  c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',0.9));};im.onerror=rej;im.src=fr.result;};fr.onerror=rej;fr.readAsDataURL(file);});}
+document.querySelectorAll('.ph').forEach(f=>{
+  const id=f.dataset.slot,info=SLOTS[id];
+  f.innerHTML=`<img alt=""><div class="ph-empty" contenteditable="false">${info.icon==='qr'?QR:CAM}<b>${info.b||'实拍照片'}</b><em>${info.t}</em><span>${info.s}${isExport?'':' · 点击替换'}</span></div>
+  <div class="ph-tools" contenteditable="false"><button data-a="pick">替换</button><button data-a="clear">清除照片</button><button data-a="del" class="del">删除此框</button></div>
+  <input type="file" accept="image/*" hidden>`;
+  const img=f.querySelector('img'),inp=f.querySelector('input');
+  let pos={x:50,y:50,z:1};
+  if(f.dataset.pos){const a=f.dataset.pos.split(',').map(Number);if(a.length===3)pos={x:a[0],y:a[1],z:a[2]};}
+  const apply=()=>{img.style.objectPosition=pos.x+'% '+pos.y+'%';img.style.transform=`scale(${pos.z})`;img.style.transformOrigin=pos.x+'% '+pos.y+'%';f.dataset.pos=[pos.x.toFixed(1),pos.y.toFixed(1),pos.z.toFixed(2)].join(',');};
+  apply();
+  img.onload=()=>f.classList.add('filled');
+  if(f.dataset.removed){/* 已删除：不载入 */}
+  else if(f.dataset.cleared){/* 已清除：不自动载入 photos/ */}
+  else if(f.dataset.img){img.src=f.dataset.img;}        // 已保存进HTML的照片（dataURL）
+  else{const exts=['jpg','jpeg','png','webp'];let k=0;  // photos/<id>.* 自动载入
+    img.onerror=()=>{k++;if(k<exts.length)img.src=`photos/${id}.${exts[k]}`;else img.onerror=null;};
+    img.src=`photos/${id}.${exts[0]}`;}
+  inp.onchange=async()=>{const fl=inp.files[0];if(!fl)return;img.onerror=null;const d=await shrink(fl);delete f.dataset.cleared;f.dataset.img=d;img.src=d;pos={x:50,y:50,z:1};apply();};
+  f.addEventListener('click',e=>{const a=e.target.dataset&&e.target.dataset.a;
+    if(a==='clear'){e.stopPropagation();img.onerror=null;img.removeAttribute('src');delete f.dataset.img;f.dataset.cleared='1';f.classList.remove('filled');return;}
+    if(a==='del'){e.stopPropagation();removeSlot(f.dataset.slot);return;}
+    if(document.body.classList.contains('editing')&&e.target.closest('.ph-tools'))return;
+    if(a==='pick'||!f.classList.contains('filled')){e.stopPropagation();inp.click();}});
+  let drag=null;
+  img.addEventListener('mousedown',e=>{drag={x:e.clientX,y:e.clientY,px:pos.x,py:pos.y};e.preventDefault();});
+  window.addEventListener('mousemove',e=>{if(!drag)return;pos.x=Math.min(100,Math.max(0,drag.px-(e.clientX-drag.x)/f.clientWidth*100));pos.y=Math.min(100,Math.max(0,drag.py-(e.clientY-drag.y)/f.clientHeight*100));apply();});
+  window.addEventListener('mouseup',()=>drag=null);
+  img.addEventListener('dblclick',()=>{pos={x:50,y:50,z:1};apply();});
+  f.addEventListener('wheel',e=>{if(!e.ctrlKey||!f.classList.contains('filled'))return;e.preventDefault();pos.z=Math.min(3,Math.max(1,pos.z-e.deltaY*0.002));apply();},{passive:false});
+});
+
+// ===== 删除 / 恢复照片位 =====
+const delStack=[];
+function relayout(){
+  document.querySelectorAll('.pair').forEach(p=>{const ph=[...p.querySelectorAll(':scope>.ph')];if(!ph.length)return;
+    const live=ph.filter(f=>!f.dataset.removed).length;p.classList.toggle('single',live===1);p.classList.toggle('empty',live===0);});
+  document.querySelectorAll('.spk').forEach(s=>{const f=s.querySelector('.ph');s.classList.toggle('nophoto',!!(f&&f.dataset.removed));});
+  document.querySelectorAll('.joincard').forEach(j=>{const f=j.querySelector('.ph');j.classList.toggle('noqr',!!(f&&f.dataset.removed));});
+  const list=document.getElementById('delList');if(!list)return;
+  const rm=[...document.querySelectorAll('.ph[data-removed]')];
+  list.innerHTML=rm.length?'':'<i>（无）</i>';
+  rm.forEach(f=>{const id=f.dataset.slot,b=document.createElement('button');b.className='restore';b.textContent='恢复 '+id+'｜'+SLOTS[id].t;b.onclick=()=>restoreSlot(id);list.appendChild(b);});
+}
+function removeSlot(id){const f=document.querySelector(`.ph[data-slot="${id}"]`);if(!f||f.dataset.removed)return;f.dataset.removed='1';delStack.push(id);relayout();}
+function restoreSlot(id){const f=document.querySelector(`.ph[data-slot="${id}"]`);if(!f)return;delete f.dataset.removed;
+  const i=delStack.lastIndexOf(id);if(i>=0)delStack.splice(i,1);
+  const img=f.querySelector('img');if(f.dataset.img&&!img.getAttribute('src'))img.src=f.dataset.img;relayout();}
+document.getElementById('btnUndo').onclick=()=>{const id=delStack.pop();if(id)restoreSlot(id);};
+document.getElementById('btnRestoreAll').onclick=()=>{document.querySelectorAll('.ph[data-removed]').forEach(f=>restoreSlot(f.dataset.slot));};
+window.__removeSlot=removeSlot;window.__restoreSlot=restoreSlot;
+relayout();
+const EDIT_SEL='.hx-foot b,.join h2,.join .jt,.join .jh,.yi h4,.yi p,.q,.vs li,.data li,.flow span,.chain span,.era h4,.era p,.steps3 span,.gold h3,.gold p,.tools b,.tools small,.ways span,.cloud span,.pull b,.bridge,.pptfig figcaption,[data-edit],.ag .t,.tpl li,.rule li,.rule .top b,.bio li,.tli h4,.tli p,.tags span,.spk .nm,.spk .ti,.spk .ti2,.topic h3,.chips span,.next span,.sub,.card h3,.sh h2,.end .sig b';
+const btnEdit=document.getElementById('btnEdit');
+btnEdit.addEventListener('click',()=>{const on=!document.body.classList.contains('editing');
+  document.body.classList.toggle('editing',on);
+  document.querySelectorAll(EDIT_SEL).forEach(el=>{if(!el.closest('.ph'))el.contentEditable=on;});
+  btnEdit.textContent=on?'关闭编辑':'开启编辑（文字 / 照片框）';});
+document.getElementById('btnPrint').onclick=()=>window.print();
+function buildSavedHTML(){
+  const c=document.documentElement.cloneNode(true);
+  c.querySelector('body').classList.remove('editing','export');
+  c.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));
+  c.querySelectorAll('.ph').forEach(f=>{f.classList.remove('filled');f.innerHTML='';});  // 照片保存在 data-img / data-pos 属性中
+  const b=c.querySelector('#btnEdit');if(b)b.textContent='开启编辑（文字 / 照片框）';
+  const dl=c.querySelector('#delList');if(dl)dl.innerHTML='';
+  return '<!DOCTYPE html>\n'+c.outerHTML;}
+window.__buildSavedHTML=buildSavedHTML;
+document.getElementById('btnSave').onclick=()=>{
+  const blob=new Blob([buildSavedHTML()],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='排版源稿-已编辑.html';document.body.appendChild(a);a.click();a.remove();};
+</script>
+</body>
+</html>

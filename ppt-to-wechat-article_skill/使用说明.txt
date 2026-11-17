@@ -1,0 +1,13 @@
+ppt-to-wechat-article：PPT/PDF转公众号图片推文 skill
+
+怎么给其他 agent 用：
+- Claude Code / Cursor 等支持 SKILL.md 的工具：把整个 ppt-to-wechat-article 文件夹放进它的 skills 目录
+  （如 ~/.claude/skills/ 或项目里的 .cursor/skills/ 、.claude/skills/）。
+- 其他 AI（ChatGPT、豆包、Kimi 等）：把 SKILL.md 的内容当作指令发给它，再上传 PPT；
+  需要导出图片时把 template 文件夹一起给它，或自己在本机运行 render.py。
+
+自己导出图片：
+  pip install playwright
+  python -m playwright install chromium
+  cd template 文件夹
+  python render.py 你的文件.html --scale 2
